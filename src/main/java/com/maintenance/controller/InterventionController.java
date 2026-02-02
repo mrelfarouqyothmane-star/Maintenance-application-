@@ -51,9 +51,27 @@ public class InterventionController {
         Label titre = new Label("Gestion des Interventions");
         titre.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;");
 
-        VBox header = new VBox(titre);
-        header.setPadding(new Insets(15));
-        header.setStyle("-fx-background-color: #FF9800;");
+        // ajout des filtres 
+        HBox filtres= new HBox(10);
+        filtres.setPadding(new Insets(10,0,0,0));
+        // FILTRE STATUT 
+         ComboBox<String>cboStatut = new ComboBox<>();
+         cboStatut.getItems().addAll("Tous", "En cours ", "Planifiee", "Terminee");
+         cboStatut.setValue("Tous");
+         // Filtre technicien 
+         ComboBox<String> cboBat = new ComboBox<>();
+         cboBat.getItems().add("Tous");
+         cboBat.setValue("Tous");
+      // Filtre batiment  
+         ComboBox<String> cboTech = new ComboBox<>();
+         cboBat.getItems().add("Tous");
+         cboBat.setValue("Tous");
+         filtres.getChildren().addAll(cboStatut,cboTech,cboBat);
+          VBox header = new VBox(10, titre,filtres);
+          header.setPadding(new Insets(15));
+          header.setStyle("-fx-background-color :#FF9800;");
+        
+
         return header;
     }
 
