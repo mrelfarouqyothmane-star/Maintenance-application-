@@ -37,7 +37,7 @@ public class InterventionController {
 
     public Scene createScene(Stage stage) {
         BorderPane root = new BorderPane();
-        root.setTop(createHeader());
+        root.setTop(createHeader(stage));
         root.setCenter(createTableView());
         root.setRight(createFormulaire());
         root.setPadding(new Insets(10));
@@ -47,10 +47,11 @@ public class InterventionController {
         return new Scene(root, 1100, 600);
     }
 
-    private VBox createHeader() {
+    private VBox createHeader(Stage stage ) {
         Label titre = new Label("Gestion des Interventions");
         titre.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;");
-
+        Button btnRetour = new Button("Retour");
+        btnRetour.setOnAction(e -> new com.maintenance.MainApp().start(stage));
         // ajout des filtres 
         HBox filtres= new HBox(10);
         filtres.setPadding(new Insets(10,0,0,0));
@@ -64,10 +65,11 @@ public class InterventionController {
          cboBat.setValue("Tous");
       // Filtre batiment  
          ComboBox<String> cboTech = new ComboBox<>();
-         cboBat.getItems().add("Tous");
-         cboBat.setValue("Tous");
+         cboTech.getItems().add("Tous");
+         cboTech.setValue("Tous");
          filtres.getChildren().addAll(cboStatut,cboTech,cboBat);
-          VBox header = new VBox(10, titre,filtres);
+          HBox top = new HBox(10, btnRetour, titre);
+          VBox header = new VBox(10, top ,filtres);
           header.setPadding(new Insets(15));
           header.setStyle("-fx-background-color :#FF9800;");
         
@@ -172,6 +174,9 @@ public class InterventionController {
         btnModifier.setStyle("-fx-background-color: #FF9800; -fx-text-fill: white;");
         btnModifier.setMaxWidth(Double.MAX_VALUE);
         btnModifier.setOnAction(e -> modifier());
+        Button btnCloturer = new Button("Clôturer");
+        btnCloturer.setMaxWidth(Double.MAX_VALUE);
+        btnCloturer.setOnAction(e -> cloturer());
 
         Button btnSupprimer = new Button("Supprimer");
         btnSupprimer.setStyle("-fx-background-color: #F44336; -fx-text-fill: white;");
