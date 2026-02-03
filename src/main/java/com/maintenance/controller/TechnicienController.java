@@ -5,6 +5,7 @@ import com.maintenance.model.Technicien;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -28,7 +29,8 @@ public class TechnicienController {
 
     public Scene createScene(Stage stage) {
         BorderPane root = new BorderPane();
-        root.setTop(createHeader());
+        // On passe désormais 'stage' au header pour le bouton retour
+        root.setTop(createHeader(stage)); 
         root.setCenter(createTableView());
         root.setRight(createFormulaire());
         root.setPadding(new Insets(10));
@@ -38,13 +40,20 @@ public class TechnicienController {
         return new Scene(root, 900, 600);
     }
 
-    private VBox createHeader() {
+    // Le header est maintenant une HBox avec le bouton retour comme pour les bâtiments
+    private HBox createHeader(Stage stage) {
         Label titre = new Label("Gestion des Techniciens");
         titre.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;");
-
-        VBox header = new VBox(titre);
+        
+        Button btnRetour = new Button("← Retour");
+        btnRetour.setStyle("-fx-background-color: #1976D2; -fx-text-fill: white; -fx-font-weight: bold;");
+        // Action pour retourner au menu principal
+        btnRetour.setOnAction(e -> new com.maintenance.MainApp().start(stage));
+        
+        HBox header = new HBox(20, btnRetour, titre);
+        header.setAlignment(Pos.CENTER_LEFT);
         header.setPadding(new Insets(15));
-        header.setStyle("-fx-background-color: #2196F3;");
+        header.setStyle("-fx-background-color: #2196F3;"); // Garde le bleu pour les techniciens
         return header;
     }
 
