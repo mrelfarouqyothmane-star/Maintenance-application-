@@ -56,9 +56,9 @@ public class InterventionController {
         HBox filtres= new HBox(10);
         filtres.setPadding(new Insets(10,0,0,0));
         // FILTRE STATUT 
-         ComboBox<String>cboStatut = new ComboBox<>();
-         cboStatut.getItems().addAll("Tous", "En cours ", "Planifiee", "Terminee");
-         cboStatut.setValue("Tous");
+         ComboBox<String>cboFiltreStatut = new ComboBox<>();
+         cboFiltreStatut.getItems().addAll("Tous", "En cours ", "Planifiee", "Terminee");
+         cboFiltreStatut.setValue("Tous");
          // Filtre technicien 
          ComboBox<String> cboBat = new ComboBox<>();
          cboBat.getItems().add("Tous");
@@ -67,7 +67,7 @@ public class InterventionController {
          ComboBox<String> cboTech = new ComboBox<>();
          cboTech.getItems().add("Tous");
          cboTech.setValue("Tous");
-         filtres.getChildren().addAll(cboStatut,cboTech,cboBat);
+         filtres.getChildren().addAll(cboFiltreStatut,cboTech,cboBat);
           HBox top = new HBox(10, btnRetour, titre);
           VBox header = new VBox(10, top ,filtres);
           header.setPadding(new Insets(15));
@@ -195,7 +195,7 @@ public class InterventionController {
                 new Label("Type :"), txtType,
                 new Label("Statut :"), cboStatut,
                 new Label("Description :"), txtDescription,
-                btnAjouter, btnModifier, btnSupprimer, btnReinitialiser);
+                btnAjouter, btnModifier,btnCloturer,  btnSupprimer, btnReinitialiser);
 
         // Listener pour remplir le formulaire lors de la sélection
         tableView.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
@@ -272,7 +272,26 @@ public class InterventionController {
             reinitialiser();
         }
     }
-
+    private void cloturer() {
+        Intervention selected = tableView.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showAlert("Erreur", "Sélectionnez une intervention", Alert.AlertType.ERROR);
+            return;
+        }
+        
+        if ("Terminee".equals(selected.getStatut())) {
+            showAlert("Info", "Cette intervention est déjà terminée", Alert.AlertType.INFORMATION);
+            return;
+        }
+        
+        selected.setStatut("Terminee");
+        
+        if (interventionDAO.update(selected)) {
+            showAlert("Succès", "Intervention clôturée !", Alert.AlertType.INFORMATION);
+            chargerDonnees();
+            reinitialiser();
+        }
+    }
     private void supprimer() {
         Intervention selected = tableView.getSelectionModel().getSelectedItem();
         if (selected == null) {
