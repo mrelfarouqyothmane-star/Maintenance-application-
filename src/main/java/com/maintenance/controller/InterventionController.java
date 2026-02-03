@@ -59,14 +59,20 @@ public class InterventionController {
          ComboBox<String>cboFiltreStatut = new ComboBox<>();
          cboFiltreStatut.getItems().addAll("Tous", "En cours ", "Planifiee", "Terminee");
          cboFiltreStatut.setValue("Tous");
-         // Filtre technicien 
-         ComboBox<String> cboBat = new ComboBox<>();
-         cboBat.getItems().add("Tous");
-         cboBat.setValue("Tous");
-      // Filtre batiment  
+      // Filtre technicien 
          ComboBox<String> cboTech = new ComboBox<>();
          cboTech.getItems().add("Tous");
+         for (Technicien tech : technicienDAO.getAll()) {
+             cboTech.getItems().add(tech.getNom());
+         }
          cboTech.setValue("Tous");
+         // Filtre batiment  
+         ComboBox<String> cboBat = new ComboBox<>();
+         cboBat.getItems().add("Tous");
+         for (Batiment bat : batimentDAO.getAll()) {
+             cboBat.getItems().add(bat.getNom());
+         }
+         cboBat.setValue("Tous");
          filtres.getChildren().addAll(cboFiltreStatut,cboTech,cboBat);
           HBox top = new HBox(10, btnRetour, titre);
           VBox header = new VBox(10, top ,filtres);
