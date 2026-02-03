@@ -28,7 +28,7 @@ public class BatimentController {
     }
     
     // écran de batiment
-    public Scene createScene(Stage stage) {
+    public Scene createScene(Stage stage) { 
         BorderPane root = new BorderPane();
         root.setTop(creerHeader(stage));
         root.setCenter(creerTableau());

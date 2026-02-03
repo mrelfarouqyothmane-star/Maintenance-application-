@@ -102,7 +102,7 @@ public class InterventionController {
 
         TableColumn<Intervention, LocalDate> colDate = new TableColumn<>("Date");
         colDate.setCellValueFactory(new PropertyValueFactory<>("dateIntervention"));
-        colDate.setPrefWidth(100);
+        colDate.setPrefWidth(100); 
 
         TableColumn<Intervention, String> colType = new TableColumn<>("Type");
         colType.setCellValueFactory(new PropertyValueFactory<>("typeIntervention"));
