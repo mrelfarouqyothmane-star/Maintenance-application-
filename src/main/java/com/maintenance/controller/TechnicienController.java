@@ -29,7 +29,7 @@ public class TechnicienController {
 
     public Scene createScene(Stage stage) {
         BorderPane root = new BorderPane();
-        // On passe désormais 'stage' au header pour le bouton retour
+        
         root.setTop(createHeader(stage)); 
         root.setCenter(createTableView());
         root.setRight(createFormulaire());
@@ -40,7 +40,7 @@ public class TechnicienController {
         return new Scene(root, 900, 600);
     }
 
-    // Le header est maintenant une HBox avec le bouton retour comme pour les bâtiments
+    
     private HBox createHeader(Stage stage) {
         Label titre = new Label("Gestion des Techniciens");
         titre.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;");
@@ -53,7 +53,7 @@ public class TechnicienController {
         HBox header = new HBox(20, btnRetour, titre);
         header.setAlignment(Pos.CENTER_LEFT);
         header.setPadding(new Insets(15));
-        header.setStyle("-fx-background-color: #2196F3;"); // Garde le bleu pour les techniciens
+        header.setStyle("-fx-background-color: #2196F3;"); 
         return header;
     }
 

@@ -44,8 +44,7 @@ public class BatimentController {
         Label titre = new Label("Gestion des Bâtiments");
         titre.setStyle("-fx-font-size: 24px; -fx-text-fill: white;");
         
-        Button btnRetour = new Button("← Retour");
-        btnRetour.setStyle("-fx-background-color: #388E3C; -fx-text-fill: white;");
+        Button btnRetour = new Button("Retour");
         btnRetour.setOnAction(e -> new com.maintenance.MainApp().start(stage));
         
         HBox header = new HBox(20, btnRetour, titre);
