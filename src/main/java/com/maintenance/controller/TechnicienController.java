@@ -45,8 +45,10 @@ public class TechnicienController {
         Label titre = new Label("Gestion des Techniciens");
         titre.setStyle("-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;");
         
-        Button btnRetour = new Button("← Retour");
-        btnRetour.setStyle("-fx-background-color: #1976D2; -fx-text-fill: white; -fx-font-weight: bold;");
+        Button btnRetour = new Button("Retour");
+        btnRetour.setOnAction(e -> new com.maintenance.MainApp().start(stage));
+        
+       
         // Action pour retourner au menu principal
         btnRetour.setOnAction(e -> new com.maintenance.MainApp().start(stage));
         
