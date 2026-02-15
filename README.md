@@ -9,7 +9,8 @@ Consulter l'historique : Filtrer les interventions pour voir le planning d'un te
 
 
 L'équipe du projet
-Ce travail a été réalisé en groupe de trois  :
+Ce travail a été réalisé en groupe :
 Fatine Kassabi 
 Othmane Elfarouqy
+
 
